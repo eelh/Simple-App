@@ -19,16 +19,16 @@ jobs:
           java-version: 17
           distribution: temurin
 
-      - name: Set up Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.3
-
-      - name: Set up Android SDK
+      - name: Set up Android SDK and Gradle
         uses: android-actions/setup-android@v3
+        with:
+          api-level: 34
+          build-tools: 34.0.0
 
       - name: Build with Gradle
-        run: gradle assembleDebug --stacktrace --no-daemon
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --stacktrace --no-daemon
 
       - name: Upload debug APK
         if: success()
