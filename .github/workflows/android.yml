@@ -23,13 +23,13 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Run unit tests
-        run: ./gradlew test --stacktrace
+        run: gradle test --stacktrace
 
       - name: Run lint checks
-        run: ./gradlew lint --stacktrace
+        run: gradle lint --stacktrace
 
       - name: Build debug APK
-        run: ./gradlew assembleDebug --stacktrace
+        run: gradle assembleDebug --stacktrace
 
       - name: Upload test results
         if: always()
