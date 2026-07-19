@@ -22,6 +22,12 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Add Gradle to PATH
+        run: |
+          echo "GRADLE_HOME=$(dirname $(dirname $(which gradle)))" >> $GITHUB_ENV
+          echo "$GRADLE_HOME/bin" >> $GITHUB_PATH
+          gradle --version
+
       - name: Run unit tests
         run: gradle test --stacktrace
 
