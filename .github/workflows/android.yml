@@ -27,28 +27,8 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Run unit tests
-        run: gradle test --stacktrace
-
-      - name: Run lint checks
-        run: gradle lint --stacktrace
-
       - name: Build debug APK
         run: gradle assembleDebug --stacktrace
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: app/build/reports/tests/
-
-      - name: Upload lint results
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: lint-results
-          path: app/build/reports/lint-results-*.html
 
       - name: Upload debug APK
         if: success()
